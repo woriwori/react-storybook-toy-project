@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Button } from 'antd';
 import { UserOutlined, PlusOutlined } from '@ant-design/icons';
 import CommonTitle from '@/CommonTitle';
 import CommonTable from '@/CommonTable';
+import CommonTab from '@/CommonTab';
 
 const StyledUsers = styled.div`
   width: 1000px;
@@ -18,189 +19,220 @@ const StyledHeader = styled.div`
   justify-content: space-between;
 `;
 
-const users = [
+const USERS = [
   {
-    id: 'lcqp3861',
-    name: 'Amalie Gyorgy',
-    email: 'agyorgy0@phpbb.com',
-    status: 'active',
-  },
-  {
-    id: 'rrfr9557',
-    name: 'Rourke Govinlock',
-    email: 'rgovinlock1@amazon.com',
+    id: 'mcdz6546',
+    name: 'Reider Frandsen',
+    email: 'rfrandsen0@kickstarter.com',
     status: 'inactive',
+    key: 1,
   },
   {
-    id: 'evwv3968',
-    name: 'Martino Keysall',
-    email: 'mkeysall2@washington.edu',
+    id: 'vzrl7489',
+    name: 'Roscoe Carwardine',
+    email: 'rcarwardine1@theglobeandmail.com',
     status: 'inactive',
+    key: 2,
   },
   {
-    id: 'unaz1805',
-    name: 'Lezley Janiszewski',
-    email: 'ljaniszewski3@ox.ac.uk',
+    id: 'etzq9499',
+    name: 'Walsh Wodham',
+    email: 'wwodham2@creativecommons.org',
     status: 'inactive',
+    key: 3,
   },
   {
-    id: 'nvzf4070',
-    name: 'Emmerich Billyeald',
-    email: 'ebillyeald4@wisc.edu',
-    status: 'active',
-  },
-  {
-    id: 'cdrd9387',
-    name: 'Melodee Dovermann',
-    email: 'mdovermann5@gravatar.com',
-    status: 'active',
-  },
-  {
-    id: 'sdcv1254',
-    name: 'Rolf Gorstidge',
-    email: 'rgorstidge6@bbc.co.uk',
+    id: 'kdcy7512',
+    name: 'Saul Mugleston',
+    email: 'smugleston3@indiegogo.com',
     status: 'inactive',
+    key: 4,
   },
   {
-    id: 'yexj8107',
-    name: 'Fawn Challen',
-    email: 'fchallen7@noaa.gov',
-    status: 'active',
-  },
-  {
-    id: 'hkje9040',
-    name: 'Adelaida Purcell',
-    email: 'apurcell8@printfriendly.com',
+    id: 'mtlv9828',
+    name: 'Lucian Burker',
+    email: 'lburker4@cnn.com',
     status: 'inactive',
+    key: 5,
   },
   {
-    id: 'ribj3630',
-    name: 'Cullin Assandri',
-    email: 'cassandri9@imgur.com',
-    status: 'active',
-  },
-  {
-    id: 'wioe0125',
-    name: 'Rickert Prestwich',
-    email: 'rprestwicha@godaddy.com',
-    status: 'active',
-  },
-  {
-    id: 'xosg8342',
-    name: 'Adelina Acreman',
-    email: 'aacremanb@archive.org',
-    status: 'active',
-  },
-  {
-    id: 'tyhr4272',
-    name: 'Antonino Sylvester',
-    email: 'asylvesterc@adobe.com',
-    status: 'active',
-  },
-  {
-    id: 'ultx2528',
-    name: 'Lorie Bartolommeo',
-    email: 'lbartolommeod@usatoday.com',
+    id: 'icjk6201',
+    name: 'Rowland Madner',
+    email: 'rmadner5@china.com.cn',
     status: 'inactive',
+    key: 6,
   },
   {
-    id: 'xrwb4207',
-    name: 'Matty Jaimez',
-    email: 'mjaimeze@discovery.com',
+    id: 'uzik5330',
+    name: 'Pembroke Gutowska',
+    email: 'pgutowska6@t-online.de',
     status: 'active',
+    key: 7,
   },
   {
-    id: 'xerm8208',
-    name: 'Heidi Bahike',
-    email: 'hbahikef@goo.gl',
+    id: 'traq9705',
+    name: 'Barde Rosier',
+    email: 'brosier7@blog.com',
+    status: 'inactive',
+    key: 8,
+  },
+  {
+    id: 'tkig8521',
+    name: 'Bette Gosker',
+    email: 'bgosker8@nps.gov',
     status: 'active',
+    key: 9,
   },
   {
-    id: 'fivl9218',
-    name: 'Abel Baff',
-    email: 'abaffg@cbc.ca',
+    id: 'pvit5893',
+    name: 'Kimberlee Randleson',
+    email: 'krandleson9@mail.ru',
     status: 'inactive',
+    key: 10,
   },
   {
-    id: 'zhuv7770',
-    name: 'Kai Emberton',
-    email: 'kembertonh@t-online.de',
+    id: 'jlel4733',
+    name: 'Tiphani Kief',
+    email: 'tkiefa@noaa.gov',
+    status: 'inactive',
+    key: 11,
+  },
+  {
+    id: 'rbpi1961',
+    name: 'Hamlin Rizzetti',
+    email: 'hrizzettib@timesonline.co.uk',
     status: 'active',
+    key: 12,
   },
   {
-    id: 'pfyd7179',
-    name: 'Richardo Vain',
-    email: 'rvaini@hatena.ne.jp',
+    id: 'gkqq4766',
+    name: 'Gage Seer',
+    email: 'gseerc@shutterfly.com',
     status: 'active',
+    key: 13,
   },
   {
-    id: 'zwnl6435',
-    name: 'Jsandye Fancett',
-    email: 'jfancettj@foxnews.com',
+    id: 'hggz1620',
+    name: 'Fanchette Wickstead',
+    email: 'fwicksteadd@unesco.org',
     status: 'inactive',
+    key: 14,
   },
   {
-    id: 'ysop3144',
-    name: 'Krystyna Loweth',
-    email: 'klowethk@time.com',
-    status: 'inactive',
-  },
-  {
-    id: 'zwdj7107',
-    name: 'Doyle Docket',
-    email: 'ddocketl@godaddy.com',
+    id: 'hebh7597',
+    name: 'Wheeler Graffham',
+    email: 'wgraffhame@umich.edu',
     status: 'active',
+    key: 15,
   },
   {
-    id: 'gaup8746',
-    name: 'Orran Garrand',
-    email: 'ogarrandm@epa.gov',
-    status: 'inactive',
-  },
-  {
-    id: 'smlv5573',
-    name: 'Tobiah Tyzack',
-    email: 'ttyzackn@irs.gov',
+    id: 'rvtz2669',
+    name: 'Samson Faint',
+    email: 'sfaintf@ibm.com',
     status: 'active',
+    key: 16,
   },
   {
-    id: 'cwym9399',
-    name: 'Serene Plaid',
-    email: 'splaido@paginegialle.it',
+    id: 'yukq1532',
+    name: 'Blondie Pauli',
+    email: 'bpaulig@odnoklassniki.ru',
     status: 'inactive',
+    key: 17,
   },
   {
-    id: 'fzqa3090',
-    name: 'Sallyann Casolla',
-    email: 'scasollap@imgur.com',
+    id: 'vtow7077',
+    name: 'Edeline Whicher',
+    email: 'ewhicherh@123-reg.co.uk',
     status: 'inactive',
+    key: 18,
   },
   {
-    id: 'mlon1017',
-    name: 'Darrell Bulgen',
-    email: 'dbulgenq@google.co.jp',
+    id: 'yelu9558',
+    name: 'Elene Jallin',
+    email: 'ejallini@shareasale.com',
+    status: 'inactive',
+    key: 19,
+  },
+  {
+    id: 'upqq9698',
+    name: 'Kerstin Ripsher',
+    email: 'kripsherj@boston.com',
+    status: 'inactive',
+    key: 20,
+  },
+  {
+    id: 'mxbk2971',
+    name: 'Kaela Deedes',
+    email: 'kdeedesk@reverbnation.com',
+    status: 'inactive',
+    key: 21,
+  },
+  {
+    id: 'bvnk6864',
+    name: 'Dyane Laurenceau',
+    email: 'dlaurenceaul@wp.com',
+    status: 'inactive',
+    key: 22,
+  },
+  {
+    id: 'cbvr4104',
+    name: 'Grazia Regus',
+    email: 'gregusm@accuweather.com',
+    status: 'inactive',
+    key: 23,
+  },
+  {
+    id: 'mlan6020',
+    name: 'Rosalynd Rousell',
+    email: 'rrouselln@mapy.cz',
+    status: 'inactive',
+    key: 24,
+  },
+  {
+    id: 'nqyf7969',
+    name: 'Fayre Vennard',
+    email: 'fvennardo@delicious.com',
     status: 'active',
+    key: 25,
   },
   {
-    id: 'ezmd1521',
-    name: 'Desiri Fidilis',
-    email: 'dfidilisr@spotify.com',
+    id: 'dvoo8604',
+    name: 'Jacklin Ivatt',
+    email: 'jivattp@google.es',
+    status: 'inactive',
+    key: 26,
+  },
+  {
+    id: 'abwq8671',
+    name: 'Hieronymus Snodden',
+    email: 'hsnoddenq@constantcontact.com',
+    status: 'inactive',
+    key: 27,
+  },
+  {
+    id: 'nltw4837',
+    name: 'Ruthe Veazey',
+    email: 'rveazeyr@sitemeter.com',
     status: 'active',
+    key: 28,
   },
   {
-    id: 'hsom2899',
-    name: 'Nestor Kincaid',
-    email: 'nkincaids@whitehouse.gov',
-    status: 'inactive',
+    id: 'jjej5358',
+    name: 'Kristien Whiteley',
+    email: 'kwhiteleys@live.com',
+    status: 'active',
+    key: 29,
   },
   {
-    id: 'xqxu8389',
-    name: 'Tildie Vlasin',
-    email: 'tvlasint@123-reg.co.uk',
-    status: 'inactive',
+    id: 'rgrs3003',
+    name: 'Husein Lyngsted',
+    email: 'hlyngstedt@hatena.ne.jp',
+    status: 'active',
+    key: 30,
   },
 ];
-const columns = [
+
+const COLUMNS = [
   {
     title: 'ID',
     dataIndex: 'id',
@@ -226,6 +258,27 @@ const columns = [
 const Users = () => {
   const TITLE_TEXT = 'Users';
   const MAX_ROW_SIZE = 10;
+  const TAB_LIST = [
+    { text: 'Active', key: 'active' },
+    { text: 'Inactive', key: 'inactive' },
+  ];
+
+  const [activeTab, setActiveTab] = useState(TAB_LIST[0]);
+
+  const getUsers = () => USERS;
+
+  const currentUsers = useMemo(() => {
+    const users = getUsers();
+    return users.filter(({ status }) => status === activeTab.key);
+  }, [activeTab]);
+
+  const onChangeTab = useCallback(
+    (key) => {
+      setActiveTab(key);
+    },
+    [setActiveTab]
+  );
+
   return (
     <StyledUsers>
       <StyledHeader>
@@ -234,7 +287,16 @@ const Users = () => {
           Add
         </Button>
       </StyledHeader>
-      <CommonTable items={users} columns={columns} maxRowSize={MAX_ROW_SIZE} />
+      <CommonTab
+        activeTab={activeTab}
+        tabList={TAB_LIST}
+        onChange={onChangeTab}>
+        <CommonTable
+          items={currentUsers}
+          columns={COLUMNS}
+          maxRowSize={MAX_ROW_SIZE}
+        />
+      </CommonTab>
     </StyledUsers>
   );
 };
