@@ -13,8 +13,10 @@ const StyledShadowCardLayout = styled.div`
   }
 `;
 
-const ShadowCardLayout = ({ children }) => {
-  return <StyledShadowCardLayout>{children}</StyledShadowCardLayout>;
+const ShadowCardLayout = ({ children, style }) => {
+  return (
+    <StyledShadowCardLayout style={style}>{children}</StyledShadowCardLayout>
+  );
 };
 
 export default ShadowCardLayout;

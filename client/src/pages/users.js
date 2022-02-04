@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import styled from 'styled-components';
-import CommonTable from '@/CommonTable';
-import CommonTab from '@/CommonTab';
+import CommonTable from '@/common/CommonTable';
+import CommonTab from '@/common/CommonTab';
 import ShadowCardLayout from '@/layout/ShadowCardLayout';
+import ActionButtons from '@/users/ActionButtons';
 
 const USERS = [
   {
@@ -217,29 +217,6 @@ const USERS = [
   },
 ];
 
-const COLUMNS = [
-  {
-    title: 'ID',
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'E-mail',
-    dataIndex: 'email',
-    key: 'email',
-  },
-  {
-    title: 'Actions',
-    dataIndex: 'actions',
-    key: 'actions',
-  },
-];
-
 const Users = () => {
   const MAX_ROW_SIZE = 10;
   const TAB_LIST = [
@@ -249,6 +226,32 @@ const Users = () => {
 
   const [activeTab, setActiveTab] = useState(TAB_LIST[0]);
 
+  const COLUMNS = useMemo(
+    () => [
+      {
+        title: 'ID',
+        dataIndex: 'id',
+        key: 'id',
+      },
+      {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+      },
+      {
+        title: 'E-mail',
+        dataIndex: 'email',
+        key: 'email',
+      },
+      {
+        title: 'Actions',
+        dataIndex: 'actions',
+        key: 'actions',
+        render: () => <ActionButtons status={activeTab} />,
+      },
+    ],
+    [activeTab]
+  );
   const getUsers = () => USERS;
 
   const currentUsers = useMemo(() => {
@@ -264,7 +267,7 @@ const Users = () => {
   );
 
   return (
-    <ShadowCardLayout>
+    <ShadowCardLayout style={{ width: 1000 }}>
       <CommonTab
         activeTab={activeTab}
         tabList={TAB_LIST}
