@@ -1,23 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Button } from 'antd';
-import { UserOutlined, PlusOutlined } from '@ant-design/icons';
-import CommonTitle from '@/CommonTitle';
 import CommonTable from '@/CommonTable';
 import CommonTab from '@/CommonTab';
-
-const StyledUsers = styled.div`
-  width: 1000px;
-  #table-test {
-    height: 500px;
-    background-color: cornflowerblue;
-  }
-`;
-const StyledHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
+import ShadowCardLayout from '@/layout/ShadowCardLayout';
 
 const USERS = [
   {
@@ -256,7 +241,6 @@ const COLUMNS = [
 ];
 
 const Users = () => {
-  const TITLE_TEXT = 'Users';
   const MAX_ROW_SIZE = 10;
   const TAB_LIST = [
     { text: 'Active', key: 'active' },
@@ -280,13 +264,7 @@ const Users = () => {
   );
 
   return (
-    <StyledUsers>
-      <StyledHeader>
-        <CommonTitle text={TITLE_TEXT} IconComponent={UserOutlined} />
-        <Button type="primary" shape="round" icon={<PlusOutlined />}>
-          Add
-        </Button>
-      </StyledHeader>
+    <ShadowCardLayout>
       <CommonTab
         activeTab={activeTab}
         tabList={TAB_LIST}
@@ -297,7 +275,7 @@ const Users = () => {
           maxRowSize={MAX_ROW_SIZE}
         />
       </CommonTab>
-    </StyledUsers>
+    </ShadowCardLayout>
   );
 };
 
