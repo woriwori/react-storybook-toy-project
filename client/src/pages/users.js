@@ -247,7 +247,7 @@ const Users = () => {
         title: 'Actions',
         dataIndex: 'actions',
         key: 'actions',
-        render: () => <ActionButtons status={activeTab} />,
+        render: () => <ActionButtons status={activeTab.key} />,
       },
     ],
     [activeTab]
