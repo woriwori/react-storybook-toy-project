@@ -5,8 +5,9 @@ import { Typography } from 'antd';
 const StyledCommonTitle = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   & > h1 {
-    margin: 0;
+    margin: 1.5em;
   }
 `;
 const StyledIconComponent = styled.div`
@@ -23,9 +24,11 @@ const CommonTitle = ({
 }) => {
   return (
     <StyledCommonTitle>
-      <StyledIconComponent>
-        <IconComponent {...IconComponentProps} />
-      </StyledIconComponent>
+      {IconComponent && (
+        <StyledIconComponent>
+          <IconComponent {...IconComponentProps} />
+        </StyledIconComponent>
+      )}
       <Title>{text}</Title>
     </StyledCommonTitle>
   );
