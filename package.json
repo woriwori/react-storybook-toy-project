@@ -1,0 +1,24 @@
+{
+  "name": "react-storybook-toy-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace client server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woriwori/react-storybook-toy-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woriwori/react-storybook-toy-project/issues"
+  },
+  "homepage": "https://github.com/woriwori/react-storybook-toy-project#readme",
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}
