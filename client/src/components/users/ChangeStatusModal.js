@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 
 const ChangeStatusModal = ({ visible, onChangeVisible, status }) => {
@@ -33,6 +34,12 @@ const ChangeStatusModal = ({ visible, onChangeVisible, status }) => {
       </Modal>
     </>
   );
+};
+
+ChangeStatusModal.propTypes = {
+  visible: PropTypes.bool,
+  onChangeVisible: PropTypes.func,
+  status: PropTypes.string,
 };
 
 export default ChangeStatusModal;

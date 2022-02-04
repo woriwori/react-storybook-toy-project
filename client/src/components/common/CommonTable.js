@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Table } from 'antd';
 
 const CommonTable = ({ items, columns, maxRowSize }) => {
@@ -14,6 +15,12 @@ const CommonTable = ({ items, columns, maxRowSize }) => {
       size="small"
     />
   );
+};
+
+CommonTable.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object),
+  columns: PropTypes.arrayOf(PropTypes.object),
+  maxRowSize: PropTypes.number,
 };
 
 export default CommonTable;
