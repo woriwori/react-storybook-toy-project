@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
-import ChangeStatusModal from '@/users/ChangeStatusModal';
+import { USER_STATUS } from '@/constants';
+import ChangeStatusModal from '@/components/users/ChangeStatusModal';
 
-const ActionButtons = ({ status }) => {
+const ChangeStatusButton = ({ status }) => {
   const [showChangeStatusModal, setShowChangeStatusModal] = useState(false);
 
   const statusChangeButtonText = useMemo(
-    () => (status === 'active' ? 'Deactivate' : 'Activate'),
+    () => (status === USER_STATUS.ACTIVE ? 'Deactivate' : 'Activate'),
     [status]
   );
 
@@ -25,8 +26,8 @@ const ActionButtons = ({ status }) => {
   );
 };
 
-ActionButtons.propTypes = {
+ChangeStatusButton.propTypes = {
   status: PropTypes.string,
 };
 
-export default ActionButtons;
+export default ChangeStatusButton;

@@ -14,10 +14,18 @@ const StyledCommonTab = styled.div`
       }
     }
   }
+  .ant-tabs-nav-operations {
+    display: none;
+  }
 `;
 const { TabPane } = Tabs;
 
-const CommonTab = ({ activeTab, tabList = [], onChange, children }) => {
+const CommonTab = ({
+  defaultTab = { text: '', key: '' },
+  tabList = [],
+  onChange,
+  children,
+}) => {
   const onChangeHandler = useCallback(
     (selectedKey) => {
       onChange(tabList.find(({ key }) => key === selectedKey));
@@ -27,7 +35,10 @@ const CommonTab = ({ activeTab, tabList = [], onChange, children }) => {
 
   return (
     <StyledCommonTab>
-      <Tabs type="card" defaultActiveKey={activeTab} onChange={onChangeHandler}>
+      <Tabs
+        type="card"
+        defaultActiveKey={defaultTab.key}
+        onChange={onChangeHandler}>
         {tabList.map(({ text, key }) => (
           <TabPane tab={text} key={key}>
             {children}
@@ -44,7 +55,7 @@ const TabType = PropTypes.shape({
 });
 
 CommonTab.propTypes = {
-  activeTab: TabType,
+  defaultTab: TabType,
   tabList: PropTypes.arrayOf(TabType),
   onChange: PropTypes.func,
   children: PropTypes.element,

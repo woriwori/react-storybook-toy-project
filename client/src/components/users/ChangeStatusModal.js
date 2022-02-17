@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'antd';
+import { USER_STATUS } from '@/constants';
 
 const ChangeStatusModal = ({ visible, onChangeVisible, status }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -8,7 +9,7 @@ const ChangeStatusModal = ({ visible, onChangeVisible, status }) => {
   const handleOk = () => {
     setConfirmLoading(true);
     setTimeout(() => {
-      onChangeVisible(false);
+      onChangeVisible('false');
       setConfirmLoading(false);
     }, 1000);
   };
@@ -18,7 +19,7 @@ const ChangeStatusModal = ({ visible, onChangeVisible, status }) => {
   };
 
   const content = useMemo(() => {
-    if (status === 'active') return 'Deactivate this user?';
+    if (status === USER_STATUS.ACTIVE) return 'Deactivate this user?';
     return 'Activate this user?';
   }, [status]);
 
