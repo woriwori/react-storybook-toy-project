@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import CommonTable from '@/components/common/CommonTable';
+import CommonTable from '@/components/common/CommonTable/CommonTable';
 import CommonTab from '@/components/common/CommonTab';
 import ShadowCardLayout from '@/layout/ShadowCardLayout';
 import ChangeStatusButton from '@/components/users/ChangeStatusButton';
