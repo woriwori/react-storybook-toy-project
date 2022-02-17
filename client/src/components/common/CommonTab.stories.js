@@ -21,7 +21,7 @@ const TabContent = () => (
 );
 
 export default {
-  title: 'CommonTab',
+  title: 'components/common/CommonTab',
 };
 
 const Template = (args) => (

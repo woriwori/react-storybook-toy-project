@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import CommonTable from '@/components/common/CommonTable';
 import CommonTab from '@/components/common/CommonTab';
 import ShadowCardLayout from '@/layout/ShadowCardLayout';
-import ActionButtons from '@/components/users/ActionButtons';
+import ChangeStatusButton from '@/components/users/ChangeStatusButton';
 
 const USERS = [
   {
@@ -247,7 +247,7 @@ const Users = () => {
         title: 'Actions',
         dataIndex: 'actions',
         key: 'actions',
-        render: () => <ActionButtons status={activeTab.key} />,
+        render: () => <ChangeStatusButton status={activeTab.key} />,
       },
     ],
     [activeTab]

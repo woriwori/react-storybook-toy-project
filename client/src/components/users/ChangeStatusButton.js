@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { USER_STATUS } from '@/constants';
 import ChangeStatusModal from '@/components/users/ChangeStatusModal';
 
-const ActionButtons = ({ status }) => {
+const ChangeStatusButton = ({ status }) => {
   const [showChangeStatusModal, setShowChangeStatusModal] = useState(false);
 
   const statusChangeButtonText = useMemo(
@@ -26,8 +26,8 @@ const ActionButtons = ({ status }) => {
   );
 };
 
-ActionButtons.propTypes = {
+ChangeStatusButton.propTypes = {
   status: PropTypes.string,
 };
 
-export default ActionButtons;
+export default ChangeStatusButton;

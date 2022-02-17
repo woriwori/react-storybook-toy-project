@@ -1,12 +1,12 @@
 import React from 'react';
-import ActionButtons from './ActionButtons';
-import { USER_STATUS } from '@/constants/index';
+import ChangeStatusButton from './ChangeStatusButton';
+import { USER_STATUS } from '@/constants';
 
 export default {
-  title: 'ActionButtons',
+  title: 'components/users/ChangeStatusButton',
 };
 
-const Template = (args) => <ActionButtons {...args} />;
+const Template = (args) => <ChangeStatusButton {...args} />;
 
 export const Playground = Template.bind({});
 Playground.argTypes = {
