@@ -24,7 +24,7 @@ export default {
   title: 'components/common/CommonTab',
   argTypes: {
     defaultTab: {
-      description: 'Default active tab info',
+      description: 'Default ACTIVE tab info',
       table: {
         type: {
           summary: 'object',
