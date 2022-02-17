@@ -224,7 +224,7 @@ const Users = () => {
     { text: 'Inactive', key: 'inactive' },
   ];
 
-  const [activeTab, setActiveTab] = useState(TAB_LIST[0]);
+  const [defaultTab, setActiveTab] = useState(TAB_LIST[0]);
 
   const COLUMNS = useMemo(
     () => [
@@ -247,17 +247,17 @@ const Users = () => {
         title: 'Actions',
         dataIndex: 'actions',
         key: 'actions',
-        render: () => <ActionButtons status={activeTab.key} />,
+        render: () => <ActionButtons status={defaultTab.key} />,
       },
     ],
-    [activeTab]
+    [defaultTab]
   );
   const getUsers = () => USERS;
 
   const currentUsers = useMemo(() => {
     const users = getUsers();
-    return users.filter(({ status }) => status === activeTab.key);
-  }, [activeTab]);
+    return users.filter(({ status }) => status === defaultTab.key);
+  }, [defaultTab]);
 
   const onChangeTab = useCallback(
     (key) => {
@@ -269,7 +269,7 @@ const Users = () => {
   return (
     <ShadowCardLayout style={{ width: 1000 }}>
       <CommonTab
-        activeTab={activeTab}
+        defaultTab={defaultTab}
         tabList={TAB_LIST}
         onChange={onChangeTab}>
         <CommonTable
