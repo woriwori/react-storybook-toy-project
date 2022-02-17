@@ -22,19 +22,52 @@ const TabContent = () => (
 
 export default {
   title: 'components/common/CommonTab',
+  argTypes: {
+    defaultTab: {
+      description: 'Default active tab info',
+      table: {
+        type: {
+          summary: 'object',
+          detail: '{text: "tab name", key: "tab key"}',
+        },
+      },
+    },
+    tabList: {
+      description: 'Tab list',
+      table: {
+        type: {
+          summary: 'object array',
+          detail: '{text: "tab name", key: "tab key"}',
+        },
+      },
+    },
+    onChange: {
+      description: 'An event handler that fires when a user clicks a tab',
+      table: {
+        type: {
+          summary: 'function',
+        },
+      },
+    },
+  },
+  args: {
+    defaultTab: DEFAULT_TAB_LIST[0],
+    tabList: DEFAULT_TAB_LIST,
+    onChange: action('onChange'),
+  },
 };
 
 const Template = (args) => (
-  <CommonTab tabList={DEFAULT_TAB_LIST} {...args}>
+  <CommonTab {...args}>
     <TabContent />
   </CommonTab>
 );
 
 export const Playground = Template.bind({});
-Playground.args = {
-  defaultTab: DEFAULT_TAB_LIST[0],
-  tabList: DEFAULT_TAB_LIST,
-  onChange: action('onChange'),
-};
 
-export const Default = Template.bind({ defaultTab: DEFAULT_TAB_LIST[0] });
+export const Default = Template.bind({});
+Default.argTypes = {
+  defaultTab: { table: { disable: true } },
+  tabList: { table: { disable: true } },
+  onChange: { table: { disable: true } },
+};
