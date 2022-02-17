@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import CommonTable from '@/common/CommonTable';
-import CommonTab from '@/common/CommonTab';
+import CommonTable from '@/components/common/CommonTable';
+import CommonTab from '@/components/common/CommonTab';
 import ShadowCardLayout from '@/layout/ShadowCardLayout';
-import ActionButtons from '@/users/ActionButtons';
+import ActionButtons from '@/components/users/ActionButtons';
 
 const USERS = [
   {
