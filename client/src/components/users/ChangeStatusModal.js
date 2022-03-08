@@ -9,7 +9,7 @@ const ChangeStatusModal = ({ visible, onChangeVisible, status }) => {
   const handleOk = () => {
     setConfirmLoading(true);
     setTimeout(() => {
-      onChangeVisible('false');
+      onChangeVisible(false);
       setConfirmLoading(false);
     }, 1000);
   };
