@@ -26,3 +26,6 @@ export const Default = Template.bind({});
 Default.argTypes = {
   status: { table: { disable: true } },
 };
+Default.parameters = {
+  jest: 'ChangeStatusButton.test.js',
+};
