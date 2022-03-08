@@ -21,3 +21,8 @@ export default {
 const Template = (args) => <ChangeStatusButton {...args} />;
 
 export const Playground = Template.bind({});
+
+export const Default = Template.bind({});
+Default.argTypes = {
+  status: { table: { disable: true } },
+};
