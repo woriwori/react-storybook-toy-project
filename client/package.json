@@ -8,7 +8,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest",
-    "test:generate-output": "jest --json --outputFile=.jest-test-results.json --watch"
+    "test:generate-output": "jest --json --outputFile=.jest-test-results.json --watch",
+    "chromatic": "chromatic --project-token=dd573e39806b --exit-zero-on-changes"
   },
   "keywords": [],
   "author": "",
@@ -40,6 +41,7 @@
     "@testing-library/user-event": "^13.5.0",
     "babel-loader": "^8.2.3",
     "babel-plugin-styled-components": "^2.0.2",
+    "chromatic": "^6.5.3",
     "eslint": "^6.7.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
