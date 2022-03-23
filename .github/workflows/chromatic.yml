@@ -26,3 +26,5 @@ jobs:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           workingDir: client
           projectToken: dd573e39806b
+        env:
+          CHROMATIC_PROJECT_TOKEN: dd573e39806b
