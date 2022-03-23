@@ -6,10 +6,10 @@
   "scripts": {
     "start": "next",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -o ./storybook-static -c ./.storybook",
     "test": "jest",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json --watch",
-    "chromatic": "chromatic --project-token=dd573e39806b --exit-zero-on-changes -o ./storybook-static -c ./.storybook"
+    "chromatic": "chromatic --project-token=dd573e39806b --exit-zero-on-changes"
   },
   "keywords": [],
   "author": "",
