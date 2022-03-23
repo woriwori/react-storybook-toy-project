@@ -6,6 +6,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-actions',
+    '@storybook/addon-jest',
   ],
   framework: '@storybook/react',
   core: {
