@@ -268,6 +268,7 @@ const Users = () => {
 
   return (
     <ShadowCardLayout style={{ width: 1000 }}>
+      <h1>New Title</h1>
       <CommonTab
         defaultTab={activeTab}
         tabList={TAB_LIST}
