@@ -9,7 +9,7 @@
     "build-storybook": "build-storybook",
     "test": "jest",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json --watch",
-    "chromatic": "chromatic --project-token=dd573e39806b --exit-zero-on-changes"
+    "chromatic": "npx chromatic --project-token dd573e39806b --exit-zero-on-changes"
   },
   "keywords": [],
   "author": "",
