@@ -8,7 +8,7 @@ const ChangeStatusButton = ({ status }) => {
   const [showChangeStatusModal, setShowChangeStatusModal] = useState(false);
 
   const statusChangeButtonText = useMemo(
-    () => (status === USER_STATUS.ACTIVE ? 'Deactivate' : 'Activate'),
+    () => (status === USER_STATUS.ACTIVE ? '비활성화' : '활성화'),
     [status]
   );
 
