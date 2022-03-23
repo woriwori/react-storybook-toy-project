@@ -14,7 +14,7 @@ const ChangeStatusButton = ({ status }) => {
 
   return (
     <div>
-      <Button type="default" onClick={() => setShowChangeStatusModal(true)}>
+      <Button type="primary" onClick={() => setShowChangeStatusModal(true)}>
         {statusChangeButtonText}
       </Button>
       <ChangeStatusModal
