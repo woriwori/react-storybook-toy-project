@@ -35,10 +35,7 @@ const CommonTab = ({
 
   return (
     <StyledCommonTab>
-      <Tabs
-        type="card"
-        defaultActiveKey={defaultTab.key}
-        onChange={onChangeHandler}>
+      <Tabs defaultActiveKey={defaultTab.key} onChange={onChangeHandler}>
         {tabList.map(({ text, key }) => (
           <TabPane tab={text} key={key}>
             {children}
